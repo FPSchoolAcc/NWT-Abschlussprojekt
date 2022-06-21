@@ -7,7 +7,7 @@ int rM1 = 7;
 int rM2 = 6;
 
 void setup(){
-  pinMode(lGES, OUTPUT);    
+  pinMode(lGes, OUTPUT);    
   pinMode(rGes, OUTPUT);
   pinMode(lM1, OUTPUT);
   pinMode(lM2, OUTPUT);
@@ -20,7 +20,7 @@ void loop (){
 
 }
 
-void moveForward (){
+void moveForeward (){
     digitalWrite (lM1, HIGH);
     digitalWrite (lM2, LOW);
     analogWrite (lGes, 200);
@@ -29,7 +29,7 @@ void moveForward (){
     analogWrite (rGes, 200);
 }
 
-void movebackwads (){
+void moveBackwads (){
     digitalWrite (lM1, LOW);
     digitalWrite (lM2, HIGH);
     analogWrite (lGes, 200);
