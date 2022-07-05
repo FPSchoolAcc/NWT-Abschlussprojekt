@@ -9,6 +9,9 @@ const int rGes = 5;                                   //legt den PWM-Pin für di
 const int rM1 = 7;                                    //legt die Pins für die Ansteuerung des Motors fest
 const int rM2 = 6;                                    //legt die Pins für die Ansteuerung des Motors fest
 
+int sendSignal = 5;                                   //legt Pins für den Ultraschallsensor fest
+int getSignal = 4;                                    //legt Pins für den Ultraschallsensor fest
+
 bool value_D0;                                        //führt die Variable ein, in welocher gespeichert wird, ob eine Fahrbahnmarkierung erkannt wurde
 
 
@@ -22,6 +25,9 @@ void setup() {
   
   pinMode(IN_A0, INPUT);                              //an dem oben definierten Pin wird eine Eingabe angenommen
   pinMode(IN_D0, INPUT);                              //an dem oben definierten Pin wird eine Eingabe angenommen
+  
+  pinMode(sendSignal, OUTPUT);                        //hier wird das Ultraschallsignal ausgegeben
+	pinMode(getSignal, INPUT);                          //hier wird das Ultraschallsignal empfangen
 
   Serial.begin(9600);                                 //das Serial-Communication-Protocol wird gestartet
 }
@@ -75,4 +81,20 @@ void moveLeft () {                                    //void für die Linksbeweg
 
 void IrValue() {
   value_D0 = digitalRead(IN_D0);                      //der IR-Sensor wird ausgelesen
+}
+
+void readDistance() {                                 //ließt die Distanz zum Obejekt aus
+	digitalWrite(sendSignal, LOW);
+	delay(5);
+	digitalWrite(sendSignal, HIGH);
+	delay(5);
+	digitalWrite(sendSignal, LOW);
+	delay = pulseIN(getSignal, HIGH);
+	distance = (delay / 2) * 0.03432;
+	if (distance >= 500 || distance <= 0) {
+		Serial.println("Fehler");
+  }
+   if (distance > followDistance) {
+    moveForward();
+   }
 }
