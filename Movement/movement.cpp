@@ -27,7 +27,7 @@ void setup() {
   pinMode(IN_D0, INPUT);                              //an dem oben definierten Pin wird eine Eingabe angenommen
   
   pinMode(sendSignal, OUTPUT);                        //hier wird das Ultraschallsignal ausgegeben
-	pinMode(getSignal, INPUT);                          //hier wird das Ultraschallsignal empfangen
+  pinMode(getSignal, INPUT);                          //hier wird das Ultraschallsignal empfangen
 
   Serial.begin(9600);                                 //das Serial-Communication-Protocol wird gestartet
 }
@@ -84,17 +84,17 @@ void IrValue() {
 }
 
 void readDistance() {                                 //ließt die Distanz zum Obejekt aus
-	digitalWrite(sendSignal, LOW);
-	delay(5);
-	digitalWrite(sendSignal, HIGH);
-	delay(5);
-	digitalWrite(sendSignal, LOW);
-	delay = pulseIN(getSignal, HIGH);
-	distance = (delay / 2) * 0.03432;
-	if (distance >= 500 || distance <= 0) {
-		Serial.println("Fehler");
+digitalWrite(sendSignal, LOW);
+delay(5);
+digitalWrite(sendSignal, HIGH);
+delay(5);
+digitalWrite(sendSignal, LOW);
+delay = pulseIN(getSignal, HIGH);
+distance = (delay / 2) * 0.03432;
+if (distance >= 500 || distance <= 0) {
+	Serial.println("Fehler");
   }
-   if (distance > followDistance) {
-    moveForward();
+if (distance > followDistance) {
+  	moveForward();
    }
 }
